@@ -1,0 +1,12 @@
+{
+  "name": "@repo/shared",
+  "version": "1.0.0",
+  "license": "MIT",
+  "types": "src/index.ts",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  }
+}
