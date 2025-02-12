@@ -4,7 +4,7 @@ import { z } from "zod";
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import { createApiResponse } from "../api-docs/openAPIResponseBuilders";
 
-import { UserSchema } from "@repo/shared";
+import { UserResponseSchema } from "@repo/shared";
 import * as userController from "../controller/api";
 import { authMiddleware } from "../middleware/authMiddleware";
 
@@ -13,7 +13,7 @@ import { authMiddleware } from "../middleware/authMiddleware";
 export const userRegistry = new OpenAPIRegistry();
 export const userRouter: Router = express.Router();
 
-userRegistry.register("User", UserSchema);
+userRegistry.register("User", UserResponseSchema);
 
 userRegistry.registerComponent("securitySchemes", "firebaseAuth", {
   type: "http",
@@ -32,10 +32,14 @@ userRegistry.registerPath({
       id: z.string(),
     }),
   },
-  responses: createApiResponse(UserSchema, "Success"),
+  responses: createApiResponse(UserResponseSchema, "Success"),
   security: [{ firebaseAuth: [] }],
 });
-userRouter.patch("/update-user-data/:id", authMiddleware, userController.updateUser);
+userRouter.patch(
+  "/update-user-data/:id",
+  authMiddleware,
+  userController.updateUser
+);
 
 userRegistry.registerPath({
   method: "get",
@@ -49,7 +53,7 @@ userRegistry.registerPath({
       limit: z.number().optional(),
     }),
   },
-  responses: createApiResponse(UserSchema, "Success"),
+  responses: createApiResponse(UserResponseSchema, "Success"),
   security: [{ firebaseAuth: [] }],
 });
 userRouter.get("/fetch-user-data", authMiddleware, userController.fetchUser);
@@ -88,7 +92,7 @@ userRegistry.registerPath({
       },
     },
   },
-  responses: createApiResponse(UserSchema, "Success"),
+  responses: createApiResponse(UserResponseSchema, "Success"),
   security: [{ firebaseAuth: [] }],
 });
 
