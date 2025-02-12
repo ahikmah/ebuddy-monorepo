@@ -7,7 +7,7 @@ import { openAPIRouter } from "../api-docs/openAPIRouter";
 import errorHandler from "../middleware/errorHandler";
 import rateLimiter from "../middleware/rateLimiter";
 import requestLogger from "../middleware/requestLogger";
-import { userRouter } from "../routes/userRoutes";
+import { userRouter } from "../routes/user";
 
 const logger = pino({ name: "server start" });
 const app: Express = express();

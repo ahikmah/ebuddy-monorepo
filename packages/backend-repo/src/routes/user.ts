@@ -5,7 +5,7 @@ import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import { createApiResponse } from "../api-docs/openAPIResponseBuilders";
 
 import { UserResponseSchema } from "@repo/shared";
-import * as userController from "../controller/api";
+import * as userController from "../controller/user";
 import { authMiddleware } from "../middleware/authMiddleware";
 
 // ----------------------------------------------------------------
